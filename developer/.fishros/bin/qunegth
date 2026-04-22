@@ -1,0 +1,12 @@
+xhost +local: >> /dev/null
+echo "请输入指令控制qunegth: 重启(r) 进入(e) 启动(s) 关闭(c) 删除(d) 测试(t):"
+read choose
+case $choose in
+s) docker start qunegth;;
+r) docker restart qunegth;;
+e) docker exec -it qunegth /bin/bash;;
+c) docker stop qunegth;;
+d) docker stop qunegth && docker rm qunegth && sudo rm -rf /home/developer/.fishros/bin/qunegth;;
+t) docker exec -it qunegth  /bin/bash -c "source /ros_entrypoint.sh && ros2";;
+esac
+newgrp docker
